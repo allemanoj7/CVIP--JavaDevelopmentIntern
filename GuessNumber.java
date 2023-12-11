@@ -1,30 +1,31 @@
 import java.util.*;
 
-class GuessNumner {
+class GuessNumber {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        String secretWord = "5";
-        String guess = "";
-        int guessCount = 0;
+        String secretNumber = "5";
+        String userGuess = "";
+        int numberOfGuesses = 0;
         int guessLimit = 3;
-        boolean outOfGuesses = false;
+        boolean outOfAttempts = false;
 
-        while (!guess.equals(secretWord) && !outOfGuesses) {
-
-            if (guessCount < guessLimit) {
-                System.out.print("Enter a guess : ");
-                guess = sc.nextLine();
-                guessCount++;
+        while (!userGuess.equals(secretNumber) && !outOfAttempts) {
+            if (numberOfGuesses < guessLimit) {
+                System.out.print("Enter your guess: ");
+                userGuess = scanner.nextLine();
+                numberOfGuesses++;
             } else {
-                outOfGuesses = true;
+                outOfAttempts = true;
             }
         }
-        if (outOfGuesses) {
+
+        if (outOfAttempts) {
             System.out.println("You Lose! No more guesses");
         } else {
             System.out.println("You Win!");
         }
-        sc.close();
+
+        scanner.close();
     }
 }
