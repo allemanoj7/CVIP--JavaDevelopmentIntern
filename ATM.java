@@ -1,76 +1,74 @@
 import java.util.Scanner;
-class ATM {
-    float Balance;
-    int PIN = 2345;
-    Scanner sc = new Scanner(System.in);
-    public void checkPin() {
-        System.out.print("Enter your pin : ");
-        int enteredpin = sc.nextInt();
+
+class BankTerminal {
+    float accountBalance;
+    int personalIdentificationNumber = 2345;
+    Scanner scanner = new Scanner(System.in);
+
+    public void authenticateUser() {
+        System.out.print("Enter your PIN: ");
+        int enteredPIN = scanner.nextInt();
         System.out.println();
-        if (enteredpin == PIN) {
-            menu();
+        if (enteredPIN == personalIdentificationNumber) {
+            displayMenu();
         } else {
-            System.out.println("Enter a Valid pin ");
-            checkPin();
+            System.out.println("Enter a valid PIN");
+            authenticateUser();
         }
     }
-    public void menu() {
-        System.out.println("Enter Your Choice : ");
-        System.out.println("1.Check Account Balance");
-        System.out.println("2.Withdraw Amoount");
-        System.out.println("3.Deposite Amount");
-        System.out.println("4.Exit");
-        int opt = sc.nextInt();
+
+    public void displayMenu() {
+        System.out.println("Enter Your Choice: ");
+        System.out.println("1. Check Account Balance");
+        System.out.println("2. Withdraw Amount");
+        System.out.println("3. Deposit Amount");
+        System.out.println("4. Exit");
+        int option = scanner.nextInt();
         System.out.println();
-        if (opt == 1) {
-            checkBalance();
-        }
-
-        else if (opt == 2) {
-            withDrawAmt();
-        }
-
-        else if (opt == 3) {
-            depositeAmt();
-        } else if (opt == 4) {
+        if (option == 1) {
+            checkAccountBalance();
+        } else if (option == 2) {
+            withdrawAmount();
+        } else if (option == 3) {
+            depositAmount();
+        } else if (option == 4) {
             return;
         } else {
-            System.out.println("Enter a Valid Option");
+            System.out.println("Enter a valid option");
         }
     }
 
-    public void checkBalance() {
-        System.out.println("Balance :" + Balance + "\n");
-        menu();
+    public void checkAccountBalance() {
+        System.out.println("Account Balance: " + accountBalance + "\n");
+        displayMenu();
     }
 
-    public void withDrawAmt() {
-        System.out.print("Enter Amount to Withdraw : ");
-        float amount = sc.nextFloat();
-        if (amount > Balance) {
+    public void withdrawAmount() {
+        System.out.print("Enter Amount to Withdraw: ");
+        float amount = scanner.nextFloat();
+        if (amount > accountBalance) {
             System.out.println("Insufficient Balance");
         } else {
-            Balance = Balance - amount;
-            System.out.println("Amount withdrawl successfully");
+            accountBalance = accountBalance - amount;
+            System.out.println("Amount withdrawal successful");
         }
         System.out.println();
-        menu();
+        displayMenu();
     }
 
-    public void depositeAmt() {
-        System.out.print("Enter Amount  to Deposite : ");
-        float amount = sc.nextInt();
-        Balance = Balance + amount;
+    public void depositAmount() {
+        System.out.print("Enter Amount to Deposit: ");
+        float amount = scanner.nextInt();
+        accountBalance = accountBalance + amount;
         System.out.println("Amount Deposited Successfully");
         System.out.println();
-        menu();
+        displayMenu();
     }
 }
 
-class ATMInterface {
+class ATM {
     public static void main(String[] args) {
-
-        ATM obj = new ATM();
-        obj.checkPin();
+        BankTerminal bankTerminal = new BankTerminal();
+        bankTerminal.authenticateUser();
     }
 }
