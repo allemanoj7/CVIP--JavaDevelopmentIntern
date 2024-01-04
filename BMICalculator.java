@@ -10,9 +10,9 @@ public class BMICalculator {
         System.out.print("Please enter your weight in kg: ");
         Scanner s = new Scanner(System.in);
         float weight = s.nextFloat();
-        System.out.print("Please enter your height in cm: ");
+        System.out.print("Please enter your height in meters: ");
         float height = s.nextFloat();
-        float bmi = (100*100*weight)/(height*height);
+        float bmi = (weight)/(height*height);
         System.out.println("Your BMI is: "+bmi);
         printBMICategory(bmi);
          
